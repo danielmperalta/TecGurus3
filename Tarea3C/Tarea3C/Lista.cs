@@ -12,7 +12,7 @@ namespace Tarea3C
         
         public void ListaNombres(List<string> nombres)
         {
-            int i = 1;
+            int i = 0;
             Console.WriteLine("La lista de nombres es:");
             foreach (var nombre in nombres)
             {
@@ -21,25 +21,29 @@ namespace Tarea3C
             }
         }
 
-        public List<string> CaractABuscar(List<string> nombres)
+        public List<(int,string)> CaractABuscar(List<string> nombres)
         {
             char letra;
-            int indice;
+            int pos;
+            int i = 0;
 
             Console.Write("Que caracter desea buscar?: ");
             letra = Convert.ToChar(Console.ReadLine()!);
             letra = char.ToLower(letra);
 
-            List<string> resultado = new List<string>();
+            List<(int indice, string nombre)> resultado = new List<(int, string)>();
+            
             foreach (var nombre in nombres)
             {
-                indice = nombre.ToLower().IndexOf(letra);
+                pos = nombre.ToLower().IndexOf(letra);
 
-                if (indice >= 0)
+                if (pos >= 0)
                 {
-                    resultado.Add(nombre);
                     //Console.WriteLine(nombre);
+                    resultado.Add((i,nombre));
                 }
+
+                i++;
             }
 
             Console.WriteLine("");
